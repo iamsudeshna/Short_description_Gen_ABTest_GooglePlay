@@ -11,6 +11,6 @@ TextBlob
 transformers
 torch
 Counter
-spacy==3.5.1  # Or the version you're using
+spacy==3.5.1  
 thinc>=8.1.0
 numpy>=1.21.6
