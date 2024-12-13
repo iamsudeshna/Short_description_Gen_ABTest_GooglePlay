@@ -14,3 +14,4 @@ Counter
 spacy
 thinc
 numpy
+spacy-streamlit
