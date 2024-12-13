@@ -8,3 +8,4 @@ nltk
 google_play_scraper
 wordcloud
 seaborn
+TextBlob
