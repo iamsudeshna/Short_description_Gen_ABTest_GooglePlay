@@ -1,3 +1,4 @@
+!pip install spacy 
 import streamlit as st
 import pandas as pd
 import numpy as np 
@@ -9,7 +10,7 @@ import torch
 from collections import Counter
 import re
 from google_play_scraper import app
-#import spacy
+import spacy
 
 # Loading pre-trained GPT-2 model and tokenizer from Hugging Face
 model_name = "gpt2-medium"  # 'gpt2-medium' or larger for improved quality
