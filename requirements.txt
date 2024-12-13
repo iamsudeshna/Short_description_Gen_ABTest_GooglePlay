@@ -12,6 +12,4 @@ TextBlob
 transformers
 torch
 Counter
-spacy
-spacy-streamlit
-thinc
+
