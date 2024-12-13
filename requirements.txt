@@ -1,6 +1,5 @@
 streamlit
 pandas
-numpy
 openpyxl       # For reading Excel files
 scikit-learn   
 matplotlib     
@@ -11,6 +10,7 @@ seaborn
 TextBlob
 transformers
 torch
-spacy
 Counter
-thinc
+spacy==3.5.1  # Or the version you're using
+thinc>=8.1.0
+numpy>=1.21.6
