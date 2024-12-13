@@ -9,7 +9,8 @@ import torch
 from collections import Counter
 import re
 from google_play_scraper import app
-#import spacy
+import spacy
+import thinc
 
 # Loading pre-trained GPT-2 model and tokenizer from Hugging Face
 model_name = "gpt2-medium"  # 'gpt2-medium' or larger for improved quality
