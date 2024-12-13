@@ -19,8 +19,8 @@ nltk.download('stopwords')
 nltk.download('punkt_tab')
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-from transformers import pipeline
-import torch
+#from transformers import pipeline
+#import torch
 
 st.set_page_config(page_title="Ratings_and_Reviews", page_icon="✉️")
 st.title("Ratings & Reviews of App")
