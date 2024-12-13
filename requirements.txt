@@ -6,3 +6,4 @@ scikit-learn
 matplotlib     
 nltk           
 google_play_scraper
+wordcloud
