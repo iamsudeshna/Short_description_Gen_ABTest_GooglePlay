@@ -11,7 +11,7 @@ TextBlob
 transformers
 torch
 Counter
-spacy
-thinc
-numpy
+numpy==1.24.3
+spacy==3.6.0
 spacy-streamlit
+thinc
