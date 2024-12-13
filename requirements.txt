@@ -1,0 +1,7 @@
+streamlit
+pandas
+numpy
+openpyxl       # For reading Excel files
+scikit-learn   
+matplotlib     
+nltk           
