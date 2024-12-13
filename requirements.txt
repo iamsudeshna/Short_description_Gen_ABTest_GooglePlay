@@ -10,3 +10,4 @@ wordcloud
 seaborn
 TextBlob
 transformers
+torch
