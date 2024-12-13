@@ -23,6 +23,8 @@ import nltk
 from transformers import pipeline
 import torch
 nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('punkt_tab')
 
 st.set_page_config(page_title="Ratings_and_Reviews", page_icon="✉️")
 st.title("Ratings & Reviews of Competitor's App")
