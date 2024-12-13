@@ -186,7 +186,7 @@ if st.checkbox("Short Description Generation - Metadata of App"):
         return phrases[:max_phrases]
     
     def generate_text(prompt, max_new_tokens=70, temperature=0.65,num_sequences=2):
-        input_ids = tokenizer.encode(prompt, return_tensors="pt")  # Encode the prompt
+        input_ids = tokenizer.encode(prompt, return_tensors="pt")  # Encoding the prompt
         output = model.generate(
             input_ids, 
             max_new_tokens=max_new_tokens,  
