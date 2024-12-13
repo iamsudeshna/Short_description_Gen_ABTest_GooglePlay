@@ -12,3 +12,4 @@ TextBlob
 transformers
 torch
 spacy
+Counter
