@@ -238,16 +238,7 @@ if st.checkbox("Short Description Generation - Metadata of App"):
     for i, desc in enumerate(short_descriptions, 1):
         st.write(f"Description {i}: {desc}")
 
-    #short_description = generate_summary(generate_text(truncate_text(metadata["long_description"])))
-    #short_desc = remove_banned_phrases(short_description, banned_phrases)
-    #short_desc_final = truncate_to_80_characters(short_desc)
-    
-    #st.dataframe(metadata_dataframe)
-    #st.header("Phrases from Metadata -> Key Phrases for Short Description Generation")
-    #st.write(extract_key_phrases(metadata["long_description"]))
-    
-    #st.header("Generated Short Description from Metadata of App:")
-    #st.write(short_desc_final)
+   
     
 
         
