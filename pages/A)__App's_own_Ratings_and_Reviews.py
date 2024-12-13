@@ -13,11 +13,11 @@ from wordcloud import WordCloud
 import seaborn as sns
 from textblob import TextBlob
 from collections import Counter
+import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-import nltk
 from transformers import pipeline
 import torch
 
