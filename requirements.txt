@@ -6,11 +6,11 @@ scikit-learn
 matplotlib     
 nltk           
 google_play_scraper
-spacy==3.6.1
+spacy==3.7.0
 wordcloud
 seaborn
 TextBlob
 transformers
 torch
 Counter
-
+en-core-web-sm==3.6.0
