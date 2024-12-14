@@ -6,7 +6,7 @@ scikit-learn
 matplotlib     
 nltk           
 google_play_scraper
-spacy
+spacy==3.6.1
 wordcloud
 seaborn
 TextBlob
