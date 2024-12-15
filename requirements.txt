@@ -13,4 +13,4 @@ TextBlob
 transformers
 torch
 Counter
-pipeline
+transformers.pipeline
