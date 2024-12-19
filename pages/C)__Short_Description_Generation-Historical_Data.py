@@ -28,30 +28,15 @@ st.set_page_config(
 st.header("About This Page")
 st.write("This page shows us two ways of generating statements, majorly Short Description. One from Historic Data of different store listings participating in previous A/B testing of app/game, another is generating short description from the Meta Data of app/game")
 
-def scrape_app_metadata(app_id):
-    app_info = app(app_id, lang='en', country='us')
-    return {
-        "title": app_info['title'],
-        "long_description": app_info['description'],
-        "features": app_info.get('features', []),
-        "category": app_info['genre'],
-        "url": app_info['url']
-    }
-
-app_id = "com.instabridge.android" #"io.wifimap.wifimap"
-metadata = scrape_app_metadata(app_id)
-metadata_dataframe = pd.DataFrame([metadata])
-
-if st.checkbox("Short Description Generation - Past A/B Test Results"):
-    
-    st.subheader("File Uploader and Data Viewer - A/B Testing Hypothesis Recommendation")
-    uploaded_file = st.file_uploader("Choose a CSV or Excel file", type=['csv', 'xlsx'])
-    if uploaded_file is not None:
+st.subheader("Short Description Generation - Past A/B Test Results")
+st.subheader("File Uploader and Data Viewer - A/B Testing Hypothesis Recommendation")
+uploaded_file = st.file_uploader("Choose a CSV or Excel file", type=['csv', 'xlsx'])
+if uploaded_file is not None:
         if uploaded_file.name.endswith('.csv'):  # Checking if the file is CSV or Excel
             df = pd.read_csv(uploaded_file)      # Reading CSV file
         elif uploaded_file.name.endswith('.xlsx'):
             df = pd.read_excel(uploaded_file)    # Reading excel file
-        st.write(f"File name: **{uploaded_file.name}**")
+            st.write(f"File name: **{uploaded_file.name}**")
       
         df["Start Date"] = pd.to_datetime(df["Start Date"])
         df["End Date"] = pd.to_datetime(df["End Date"])
@@ -174,79 +159,6 @@ if st.checkbox("Short Description Generation - Past A/B Test Results"):
         st.subheader("AI Generated 3rd Variant of Short Description")
         st.write(new_variant3)  
         st.write("\n")
-    else:
-        st.write("Please upload a file to proceed")
+else:
+    st.write("Please upload a file to proceed")
  
-if st.checkbox("Short Description Generation - Metadata of App"):
-    nlp = spacy.load('en_core_web_sm')
-    banned_phrases = ["#1", "Best of", "discount", "free for a limited time", "popular", "WiFi"]
-    
-    def extract_key_phrases(text, max_phrases=5):
-        doc = nlp(text)
-        phrases = [chunk.text for chunk in doc.noun_chunks if chunk.text.lower() not in nlp.Defaults.stop_words]
-        return phrases[:max_phrases]
-    
-    def generate_text(prompt, max_new_tokens=70, temperature=0.65,num_sequences=2):
-        input_ids = tokenizer.encode(prompt, return_tensors="pt")  # Encoding the prompt
-        output = model.generate(
-            input_ids, 
-            max_new_tokens=max_new_tokens,  
-            num_return_sequences=1, 
-            temperature=temperature
-        )  # Generating text
-        #generated_text = tokenizer.decode(output[0], skip_special_tokens=True) 
-        #return generated_text
-        if output.size(0) < num_sequences:
-           num_sequences = output.size(0) 
-        generated_texts = [tokenizer.decode(output[i], skip_special_tokens=True) for i in range(0,num_sequences)]
-        return generated_texts
-
-    def generate_summary(text):
-        summarizer = pipeline("summarization")
-        summary = summarizer(text, max_length=90, min_length=15, do_sample=False)
-        return summary[0]['summary_text']
-    
-    def remove_banned_phrases(description, banned_phrases):
-      for phrase in banned_phrases:
-        description = description.replace(phrase, "")
-      return description.strip()
-  
-    def truncate_text(text, max_tokens=100):
-        input_ids = tokenizer.encode(text, return_tensors="pt")
-        truncated_ids = input_ids[:, :max_tokens]  
-        return tokenizer.decode(truncated_ids[0], skip_special_tokens=True)
-    
-    def truncate_to_80_characters(description, max_length=90):
-        if len(description) <= max_length:
-            return description
-        truncated = description[:max_length].rsplit(' ', 1)[0]  # Avoiding to cut off mid-word
-        return truncated + "..." if len(description) > max_length else truncated
-
-
-    generated_texts = generate_text(truncate_text(metadata["long_description"]), num_sequences=2)
-    short_descriptions = []
-
-    for text in generated_texts:
-        summary = generate_summary(text)
-        cleaned_summary = remove_banned_phrases(summary, banned_phrases)
-        truncated_summary = truncate_to_80_characters(cleaned_summary)
-        short_descriptions.append(truncated_summary)
-        
-    st.dataframe(metadata_dataframe)
-    st.header("Phrases from Metadata -> Key Phrases for Short Description Generation")
-    st.write(extract_key_phrases(metadata["long_description"]))
-    st.header("Generated Short Descriptions from Metadata of App:")
-    for i, desc in enumerate(short_descriptions, 1):
-        st.write(f"Description {i}: {desc}")
-
-   
-    
-
-        
-    
-    
-    
-    
-    
-    
-    
