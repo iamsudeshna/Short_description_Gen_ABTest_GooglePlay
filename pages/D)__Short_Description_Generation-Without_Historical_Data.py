@@ -11,6 +11,7 @@ from collections import Counter
 import re
 from google_play_scraper import app
 import spacy
+import nltk
 from nltk.tokenize import word_tokenize,sent_tokenize
 
 model_name = "gpt2-medium"  # 'gpt2-medium' or larger for improved quality
