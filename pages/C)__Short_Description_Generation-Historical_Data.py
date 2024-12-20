@@ -88,9 +88,9 @@ if uploaded_file is not None:
             return filter_stoplist_words(generated_text, stoplist)
 
         def generate_summary(text):
-            summarizer = pipeline("summarization")
-            summary = summarizer(text, max_length=21, min_length=10, do_sample=False)
-            return summary[0]['summary_text']
+            #summarizer = pipeline("summarization")
+            #summary = summarizer(text, max_length=21, min_length=10, do_sample=False)
+            #return summary[0]['summary_text']
             
         # Generate two new variants
         new_variant1 = generate_summary(generate_text(prompt1))
