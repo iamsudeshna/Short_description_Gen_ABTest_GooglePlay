@@ -145,20 +145,5 @@ plot_keywords(negative_keywords, "Top Keywords in Negative Reviews")
 #summary = summarizer(all_reviews, max_length=200, min_length=35, do_sample=False)
 #st.write(summary[0]['summary_text'])
 
-nlp = spacy.load('en_core_web_sm')                         # Loading the language model
-all_reviews = " ".join(reviews_df['Review'][65:185]) # Combining all reviews
-doc = nlp(all_reviews)                                     # Extracting keywords
-keywords = [chunk.text for chunk in doc.noun_chunks if chunk.root.is_alpha]
-keyword_freq = Counter(keywords)
-st.subheader("Keywords Summary:")
-st.write("Top Keywords:", [word for word, freq in keyword_freq.most_common(20)])
-
-all_reviews = " ".join(reviews_df['Review'][60:180])
-sentences = sent_tokenize(all_reviews)
-# Extracting meaningful sentences based on sentiment polarity
-summary = [sent for sent in sentences if TextBlob(sent).sentiment.polarity >= 0.65 and TextBlob(sent).sentiment.polarity <= 0.9][:5]
-st.subheader("Rule-Based Summary:")
-st.write(" ".join(summary))
-
 
 
