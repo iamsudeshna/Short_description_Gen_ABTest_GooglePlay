@@ -3,8 +3,9 @@ import pandas as pd
 import numpy as np 
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
-from transformers import GPT2LMHeadModel, GPT2Tokenizer, AutoTokenizer, AutoModelForCausalLM, pipeline
+from transformers import GPT2LMHeadModel, GPT2Tokenizer, AutoTokenizer, AutoModelForCausalLM
 from wordcloud import WordCloud
+from textblob import TextBlob
 import torch
 from collections import Counter
 import re
