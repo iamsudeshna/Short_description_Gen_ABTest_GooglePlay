@@ -88,6 +88,10 @@ if uploaded_file is not None:
             return filter_stoplist_words(generated_text, stoplist)
 
         def generate_summary(text):
+            sentences = sent_tokenize(text)
+            # Extracting meaningful sentences based on sentiment polarity
+            summary = [sent for sent in sentences if TextBlob(sent).sentiment.polarity >= 0.65 and TextBlob(sent).sentiment.polarity <= 0.9][:2]
+            return (" ".join(summary))
             #summarizer = pipeline("summarization")
             #summary = summarizer(text, max_length=21, min_length=10, do_sample=False)
             #return summary[0]['summary_text']
