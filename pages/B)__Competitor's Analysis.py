@@ -146,7 +146,7 @@ plot_keywords(negative_keywords, "Top Keywords in Negative Reviews")
 #st.write(summary[0]['summary_text'])
 
 nlp = spacy.load('en_core_web_sm')                         # Loading the language model
-all_reviews = " ".join(reviews_df['Review'][65:175]) # Combining all reviews
+all_reviews = " ".join(reviews_df['Review'][65:185]) # Combining all reviews
 doc = nlp(all_reviews)                                     # Extracting keywords
 keywords = [chunk.text for chunk in doc.noun_chunks if chunk.root.is_alpha]
 keyword_freq = Counter(keywords)
