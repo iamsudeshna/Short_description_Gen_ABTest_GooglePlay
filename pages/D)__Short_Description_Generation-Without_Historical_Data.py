@@ -50,9 +50,7 @@ def generate_text(prompt, max_new_tokens=70, temperature=0.65,num_sequences=3):
             max_new_tokens=max_new_tokens,  
             num_return_sequences=1, 
             temperature=temperature
-        )  # Generating text
-        #generated_text = tokenizer.decode(output[0], skip_special_tokens=True) 
-        #return generated_text
+        )  
     num_sequences = min(output.size(0), num_sequences)
     generated_texts = [tokenizer.decode(output[i], skip_special_tokens=True) for i in range(0,num_sequences)]
     return generated_texts
@@ -80,7 +78,6 @@ def truncate_to_80_characters(description, max_length=80):
         truncated = description[:max_length].rsplit(' ', 1)[0]  # Avoiding to cut off mid-word
         return truncated + "..." if len(description) > max_length else truncated
 
-
 generated_texts = generate_text(truncate_text(metadata["long_description"]), num_sequences=3)
 short_descriptions = []
 
@@ -98,14 +95,4 @@ st.header("Generated Short Descriptions from Metadata of App:")
 for i, desc in enumerate(short_descriptions, 0):
         st.write(f"Description Genearted: {desc}")
 
-    #short_description = generate_summary(generate_text(truncate_text(metadata["long_description"])))
-    #short_desc = remove_banned_phrases(short_description, banned_phrases)
-    #short_desc_final = truncate_to_80_characters(short_desc)
-    
-    #st.dataframe(metadata_dataframe)
-    #st.header("Phrases from Metadata -> Key Phrases for Short Description Generation")
-    #st.write(extract_key_phrases(metadata["long_description"]))
-    
-    #st.header("Generated Short Description from Metadata of App:")
-    #st.write(short_desc_final)
     
