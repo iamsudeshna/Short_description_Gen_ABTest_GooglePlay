@@ -56,9 +56,11 @@ def generate_text(prompt, max_new_tokens=70, temperature=0.65,num_sequences=3):
     return generated_texts
 
 def generate_summary(text):
-        summarizer = pipeline("summarization")
-        summary = summarizer(text, max_length=90, min_length=15, do_sample=False)
-        return summary[0]['summary_text']
+        sentences = sent_tokenize(text)
+        # Extracting meaningful sentences based on sentiment polarity
+        summary = [sent for sent in sentences if TextBlob(sent).sentiment.polarity >= 0.65 and TextBlob(sent).sentiment.polarity <= 0.9][:5]
+        st.subheader("Rule-Based Summary:")
+        return (" ".join(summary))
     
 def remove_banned_phrases(description, banned_phrases):
       for phrase in banned_phrases:
@@ -70,7 +72,7 @@ def truncate_text(text, max_tokens=100):
         truncated_ids = input_ids[:, :max_tokens]  
         return tokenizer.decode(truncated_ids[0], skip_special_tokens=True)
     
-def truncate_to_80_characters(description, max_length=90):
+def truncate_to_80_characters(description, max_length=80):
         if len(description) <= max_length:
             return description
         truncated = description[:max_length].rsplit(' ', 1)[0]  # Avoiding to cut off mid-word
